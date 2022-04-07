@@ -15,20 +15,25 @@ exports.login = async (req, res, next) => {
   const {email, password} = req.body;
   // const validEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   if (!email || !password) {
-    res.status(404).json({success: false, error: "Please provide an email and password"});
+   return  res.status(404).json({success: false, error: "Please provide an email and password"});
   }
   // if (email !== validEmail) {
   //   res.status(404).json({success: false, error: "Please provide a valid email"});
   // }
-  const user = await User.findOne({email}).select("+password");
-  if (!user) {
-    res.status(404).json({success: false, error: "Invalid credentials"});
+  try {
+
+    const user = await User.findOne({email}).select("+password");
+    if (!user) {
+      return res.status(404).json({success: false, error: "Invalid credentials"});
+    }
+    const isMatch = await user.matchPasswords(password);
+    if (!isMatch) {
+      return res.status(404).json({success: false, error: "Invalid credentials"});
+    }
+    res.status(200).json({success: true, token: 'werwerwer23rwe'});
+  } catch (error) {
+    res.status(500).json({success: false, error: error.message});
   }
-  const isMatch = await user.matchPasswords(password);
-  if (!isMatch) {
-    res.status(404).json({success: false, error: "Invalid credentials"});
-  }
-  res.status(200).json({success: true, token: 'werwerwer23rwe'});
 }
 
 exports.forgotpassword = (req, res, next) => {
