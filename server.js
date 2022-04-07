@@ -6,7 +6,7 @@ const connectDB = require('./config/db');
 
 const app = express();
 const auth = require('./routes/auth');
-connectDB;
+connectDB();
 
 app.use(helmet());
 app.use(express.json());
