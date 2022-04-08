@@ -1,0 +1,1 @@
+export { LandPage } from './LandPage';
