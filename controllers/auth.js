@@ -6,7 +6,6 @@ exports.register = async (req, res, next) => {
 
   try {
     const user = await User.create({ username, email, password });
-    // sendToken(user, 201, res);
     res.status(201).json({success: true, message: "User created success", user: user});
   } catch (error) {
     next(error);
