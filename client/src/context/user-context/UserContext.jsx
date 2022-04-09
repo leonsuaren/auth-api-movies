@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
       setUserLogin(true);
     }
   }, []);
-console.log(userLogin)
   return (
     <UserContext.Provider value={{ userLoginData, userLogin, setUserLogin, setUserLoginData, user }}>
       { children }

@@ -27,6 +27,7 @@ export const Login = () => {
       localStorage.setItem('authToken', data.token);
       userContext.setUserLoginData(data);
       userContext.setUserLogin(true);
+      console.log(data);
       setTimeout(() => {
         navigate('/');
       }, 1000);
