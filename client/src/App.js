@@ -1,8 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { PrivateRoute } from './components/routing';
+
 import { NavBar } from './components/navbar';
 import { Home } from './views/home';
 import { LandPage } from './views/land-page';
-import { Movies } from './views/movies/Movies';
+import { Movies } from './views/movies';
+import { Register } from './views/register';
+import { Login } from './views/login';
 
 function App() {
   return (
@@ -10,9 +15,11 @@ function App() {
     <Router>
       <NavBar />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/land-page' element={<LandPage />} />
-          <Route path='/movies' element={<Movies />} />
+          <Route path='/' element={<PrivateRoute><Home /></PrivateRoute> } />
+          <Route path='/movies' element={<PrivateRoute><Movies /></PrivateRoute> } />
+          <Route path='/landing-page' element={<LandPage />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </Router>
     </div>
