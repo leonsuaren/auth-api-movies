@@ -12,14 +12,16 @@ import { Login } from './views/login';
 function App() {
   return (
     <div className=''>
-    <Router>
-      <NavBar />
+      <Router>
+        <NavBar />
         <Routes>
-          <Route path='/' element={<PrivateRoute><Home /></PrivateRoute> } />
-          <Route path='/movies' element={<PrivateRoute><Movies /></PrivateRoute> } />
-          <Route path='/landing-page' element={<LandPage />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='landing-page' element={<LandPage />} />
+          <Route element={<PrivateRoute />}>
+            <Route path='/' element={<Home />} />
+            <Route path='movies' element={<Movies />} />
+          </Route>
+          <Route path='register' element={<Register />} />
+          <Route path='login' element={<Login />} />
         </Routes>
       </Router>
     </div>
