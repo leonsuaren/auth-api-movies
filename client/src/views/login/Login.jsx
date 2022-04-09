@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 import './styles.css';
 import { Link } from 'react-router-dom';
 
 export const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('authToken')) {
+      navigate('/');
+    }
+  }, []);
+  const handleOnLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+      localStorage.setItem('authToken', data.token);
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
+    } catch (error) {
+      setError(error.response.data.error);
+    }
+  }
+
   return (
     <div className="h-100 gradient-form">
       <div className="container py-5 h-100">
@@ -17,37 +43,37 @@ export const Login = () => {
                       <img className='img' src="Tmdb-new-logo.png" alt="logo" />
                     </div>
                     <hr />
-                    <form>
+                    <form onSubmit={handleOnLogin}>
                       <p>Please login to your account</p>
 
                       <div className="form-outline mb-4">
-                        <input type="email" id="form2Example11" className="form-control"
-                          placeholder="Email address" />
+                        <input type="email" id="form2Example11" className="form-control" value={email}
+                          placeholder="Email address" onChange={(e) => { setEmail(e.target.value) }} />
                         <label className="form-label" htmlFor="form2Example11">Email</label>
                       </div>
 
                       <div className="form-outline mb-4">
-                        <input type="password" id="form2Example22" className="form-control" />
+                        <input type="password" id="form2Example22" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                         <label className="form-label" htmlFor="form2Example22">Password</label>
                       </div>
                       <hr />
 
                       <div className="text-center pt-1 mb-5 pb-1">
-                        <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Login</button>
+                        <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Login</button>
                         <a className="text-muted" href="#!">Forgot password?</a>
                       </div>
 
                       <div className="d-flex align-items-center justify-content-center pb-4">
                         <p className="mb-0 me-2">Don't have an account?</p>
                         <Link to="/register">
-                        <button type="button" className="btn btn-outline-danger">Create Account</button>
+                          <button type="button" className="btn btn-outline-danger">Create Account</button>
                         </Link>
                       </div>
                     </form>
 
                   </div>
                 </div>
-                <div className="col-lg-6 d-flex align-items-center bg-danger bg-gradient">
+                <div className="col-lg-6 d-flex align-items-center bg-primary bg-gradient">
                   <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                     <h4 className="mb-4">More Than Just Movies</h4>
                     <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

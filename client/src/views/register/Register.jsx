@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
@@ -10,6 +10,12 @@ export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  useEffect(() => {
+    if(localStorage.getItem('authToken')) {
+      navigate('/');
+    }
+  }, []);
 
   const onHandleRegister = async (e) => {
     e.preventDefault();
@@ -71,7 +77,7 @@ export const Register = () => {
 
                     </div>
                   </div>
-                  <div className="col-lg-6 d-flex align-items-center bg-danger bg-gradient">
+                  <div className="col-lg-6 d-flex align-items-center bg-primary bg-gradient">
                     <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                       <h4 className="mb-4">More Than Just Movies</h4>
                       <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
