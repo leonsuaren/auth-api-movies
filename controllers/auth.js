@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const sendToken = require('../utils/sendToken');
 const User = require('../models/User');
 const sendEmail = require('../utils/sendEmail');
@@ -65,5 +66,18 @@ exports.forgotpassword = async (req, res, next) => {
 }
 
 exports.resetpassword = (req, res, next) => {
-  res.status(200).json({ message: 'reset password running' });
+  const resetPasswordToken = crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
+  try {
+    const user = User.findOne({resetPasswordToken, resetPasswordExpire: { $gt: Date.now() }});
+    if (!user) {
+      return res.status(400).json({message: "Invalid Token"});
+    }
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+    await user.save();
+    res.status(201).json({success: true, message: "Password Updated Success", token: user.getSignedToken()});
+  } catch (error) {
+    next(error);
+  }
 }
