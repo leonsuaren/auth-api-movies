@@ -1,7 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './styles.css';
 
 export const NavBar = () => {
+  const navigate = useNavigate()
+
+  const handleOnLogout = () => {
+    localStorage.removeItem('authToken');
+    navigate('/landing-page')
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,13 +28,13 @@ export const NavBar = () => {
           <div className="d-flex">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Login</a>
+                <Link to='login' className="nav-link active">Login</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Logout</a>
+                <button className="nav-link active link" onClick={handleOnLogout}>Logout</button>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Register</a>
+                <Link to='register' className="nav-link active">Register</Link>
               </li>
             </ul>
           </div>

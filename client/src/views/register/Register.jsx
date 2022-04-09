@@ -13,11 +13,9 @@ export const Register = () => {
                   <div className="card-body p-md-5 mx-md-4">
 
                     <div className="text-center">
-                      <img className='img' src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                         alt="logo" />
-                      <h4 className="mt-1 mb-5 pb-1">Find Your Movie</h4>
+                      <img className='img' src="Tmdb-new-logo.png" alt="logo" />
                     </div>
-
+                    <hr />
                     <form>
                       <p>Please register your account</p>
 
@@ -42,7 +40,7 @@ export const Register = () => {
                         <input type="password" id="form2Example22" className="form-control" />
                         <label className="form-label" htmlFor="form2Example22">Confirm Password</label>
                       </div>
-
+                      <hr />
                       <div className="text-center pt-1 mb-5 pb-1">
                         <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Register</button>
                       </div>
