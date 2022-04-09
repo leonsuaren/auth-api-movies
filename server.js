@@ -1,5 +1,6 @@
 require('dotenv').config({path: './config.env'});
 const express = require('express');
+const cors = require('cors');
 const helmet = require('helmet');
 const connectDB = require('./config/db');
 
@@ -10,6 +11,7 @@ const private = require('./routes/private');
 connectDB();
 
 app.use(helmet());
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
