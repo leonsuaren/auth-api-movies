@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+import { UserContext } from '../../context/user-context';
 
 import './styles.css';
 import { Link } from 'react-router-dom';
@@ -10,6 +12,8 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     if (localStorage.getItem('authToken')) {
@@ -21,9 +25,11 @@ export const Login = () => {
     try {
       const { data } = await axios.post('http://localhost:3000/api/auth/login', { email, password });
       localStorage.setItem('authToken', data.token);
+      userContext.setUserLoginData(data);
+      userContext.setUserLogin(true);
       setTimeout(() => {
         navigate('/');
-      }, 3000);
+      }, 1000);
     } catch (error) {
       setError(error.response.data.error);
     }
