@@ -11,6 +11,7 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState({});
   const navigate = useNavigate();
 
   const userContext = useContext(UserContext);
@@ -28,17 +29,19 @@ export const Login = () => {
     try {
       const { data } = await axios.post('http://localhost:3000/api/auth/login', { email, password });
       localStorage.setItem('authToken', data.token);
-      console.log(data);
+      setSuccess(data);
       userContext.setUserLoginData(data);
       setTimeout(() => {
         userContext.setUserLogin(true);
-      }, 1000);
+      }, 3000);
       setTimeout(() => {
         navigate('/');
-      }, 1000);
+      }, 3000);
     } catch (error) {
-      console.log(error.response.data);
-      setError(error.response.data.error);
+      setError(error.response.data.message);
+      setTimeout(() => {
+        setError('');
+      }, 3000);
     }
   }
 
@@ -91,11 +94,23 @@ export const Login = () => {
                     <h4 className="mb-4">More Than Just Movies</h4>
                     <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
                 </div>
               </div>
             </div>
+            {
+              success.success ?
+                <div class="alert alert-success alert-style" role="alert">
+                  {success.message}
+                </div> : ''
+            }
+            {
+              error &&
+              <div class="alert alert-danger alert-style" role="alert">
+                {error}
+              </div>
+            }
           </div>
         </div>
       </div>
