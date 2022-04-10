@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const ForgotPassword = () => {
-  const [email, setEmail] = useState('');
+export const ResetPassword = () => {
+  const [password, setPassword] = useState('');
+  const [confirmation, setConfirmPassword] = useState('');
 
   const handleOnForgotPassword = () => { }
 
@@ -21,20 +22,20 @@ export const ForgotPassword = () => {
                     </div>
                     <hr />
                     <form onSubmit={handleOnForgotPassword}>
-                      <p>
-                        Please enter the email address you register your account with. We
-                        will send you reset password confirmation to this email
-                    </p>
+                      <p>Reset Password</p>
                       <div className="form-outline mb-4">
-                        <input type="email" id="form2Example11" className="form-control" value={email}
-                          placeholder="Email address" onChange={(e) => { setEmail(e.target.value) }} />
-                        <label className="form-label" htmlFor="form2Example11">Email</label>
+                        <input type="password" id="form2Example22" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                        <label className="form-label" htmlFor="form2Example22">Password</label>
                       </div>
 
+                      <div className="form-outline mb-4">
+                        <input type="password" className="form-control" value={confirmation} onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                        <label className="form-label" htmlFor="form2Example22">Confirm Password</label>
+                      </div>
                       <hr />
 
                       <div className="text-center pt-1 mb-5 pb-1">
-                        <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Send Email</button>
+                        <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Reset Password</button>
                       </div>
 
                     </form>
@@ -46,7 +47,7 @@ export const ForgotPassword = () => {
                     <h4 className="mb-4">More Than Just Movies</h4>
                     <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   </div>
                 </div>
               </div>

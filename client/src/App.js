@@ -11,6 +11,7 @@ import { Movies } from './views/movies';
 import { Register } from './views/register';
 import { Login } from './views/login';
 import { ForgotPassword } from './views/forgot-password';
+import { ResetPassword } from './views/reset-password';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
             <Route path='forgot-password' element={<ForgotPassword />}/>
+            <Route path='reset-password' element={<ResetPassword />}/>
           </Routes>
         </Router>
       </UserProvider>
