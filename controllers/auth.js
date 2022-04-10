@@ -65,10 +65,13 @@ exports.forgotpassword = async (req, res, next) => {
   }
 }
 
-exports.resetpassword = (req, res, next) => {
+exports.resetpassword = async (req, res, next) => {
+  // console.log(req.params.resetToken)
+  // res.json({message: 'hola'})
   const resetPasswordToken = crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
   try {
-    const user = User.findOne({resetPasswordToken, resetPasswordExpire: { $gt: Date.now() }});
+    const user = await User.findOne({resetPasswordToken, resetPasswordExpire: { $gt: Date.now() }});
+    console.log(user)
     if (!user) {
       return res.status(400).json({message: "Invalid Token"});
     }
