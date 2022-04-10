@@ -9,7 +9,6 @@ export const ForgotPassword = () => {
   const handleOnForgotPassword =async (e) => { 
     e.preventDefault();
     try {
-
       const { data } = await axios.post('http://localhost:3000/api/auth/forgot-password', { email });
       setTimeout(() => {
         navigate(`/reset-password/${data.resetToken}`);
