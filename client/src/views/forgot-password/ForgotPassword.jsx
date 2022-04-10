@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
-  const handleOnForgotPassword = () => { }
+  const handleOnForgotPassword =async (e) => { 
+    e.preventDefault();
+    try {
+
+      const { data } = await axios.post('http://localhost:3000/api/auth/forgot-password', { email });
+      setTimeout(() => {
+        navigate(`/reset-password/${data.resetToken}`);
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="h-100 gradient-form">
