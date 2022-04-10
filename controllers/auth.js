@@ -22,11 +22,11 @@ exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-      return res.status(404).json({ success: false, token: null, message: "Invalid credentials", user: null });
+      return res.status(404).json({ success: false, token: null, message: "No user found, Please Register", user: null });
     }
     const isMatch = await user.matchPasswords(password);
     if (!isMatch) {
-      return res.status(404).json({ success: false, token: null, message: "Invalid credentials", user: null });
+      return res.status(404).json({ success: false, token: null, message: "Invalid Password", user: null });
     }
     sendToken(user, 200, res);
   } catch (error) {
@@ -66,12 +66,9 @@ exports.forgotpassword = async (req, res, next) => {
 }
 
 exports.resetpassword = async (req, res, next) => {
-  // console.log(req.params.resetToken)
-  // res.json({message: 'hola'})
   const resetPasswordToken = crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
   try {
     const user = await User.findOne({resetPasswordToken, resetPasswordExpire: { $gt: Date.now() }});
-    console.log(user)
     if (!user) {
       return res.status(400).json({message: "Invalid Token"});
     }

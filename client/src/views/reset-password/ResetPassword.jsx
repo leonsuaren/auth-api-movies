@@ -31,7 +31,7 @@ export const ResetPassword = () => {
                   <div className="card-body p-md-5 mx-md-4">
 
                     <div className="text-center">
-                      <img className='img' src="Tmdb-new-logo.png" alt="logo" />
+                      <img className='img' src="/Tmdb-new-logo.png" alt="logo" />
                     </div>
                     <hr />
                     <form onSubmit={handleOnForgotPassword}>

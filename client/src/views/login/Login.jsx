@@ -17,21 +17,27 @@ export const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem('authToken')) {
-      navigate('/');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     }
   }, []);
-  
+
   const handleOnLogin = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post('http://localhost:3000/api/auth/login', { email, password });
       localStorage.setItem('authToken', data.token);
+      console.log(data);
       userContext.setUserLoginData(data);
-      userContext.setUserLogin(true);
+      setTimeout(() => {
+        userContext.setUserLogin(true);
+      }, 1000);
       setTimeout(() => {
         navigate('/');
       }, 1000);
     } catch (error) {
+      console.log(error.response.data);
       setError(error.response.data.error);
     }
   }
