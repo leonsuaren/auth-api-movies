@@ -10,6 +10,7 @@ import { LandPage } from './views/land-page';
 import { Movies } from './views/movies';
 import { Register } from './views/register';
 import { Login } from './views/login';
+import { ForgotPassword } from './views/forgot-password';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             </Route>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
+            <Route path='forgot-password' element={<ForgotPassword />}/>
           </Routes>
         </Router>
       </UserProvider>
