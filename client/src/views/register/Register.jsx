@@ -10,22 +10,41 @@ export const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState({});
 
   useEffect(() => {
-    if(localStorage.getItem('authToken')) {
+    if (localStorage.getItem('authToken')) {
       navigate('/');
     }
   }, []);
 
   const onHandleRegister = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    if (password !== confirmPassword) {
+      setPassword('');
+      setConfirmPassword('');
+      setTimeout(() => {
+        setError('');
+      }, 3000);
+      return setError('Password do not match');
+    }
     try {
-      const { data } = await axios.post("http://localhost:3000/api/auth/register", { username, email, password });
+      const { data } = await axios.post("http://localhost:3000/api/auth/register", { username, email, password }, config);
+      setSuccess(data)
       setTimeout(() => {
         navigate('/login');
       }, 3000);
     } catch (error) {
-
+      setError(error.response.data.message);
+      setTimeout(() => {
+        setError('');
+      }, 3000);
     }
   }
 
@@ -87,6 +106,18 @@ export const Register = () => {
                   </div>
                 </div>
               </div>
+              {
+                success.success ?
+                  <div class="alert alert-success alert-style" role="alert">
+                    {success.message}
+                  </div> : ''
+              }
+              {
+                error &&
+                <div class="alert alert-danger alert-style" role="alert">
+                  {error}
+                </div>
+              }
             </div>
           </div>
         </div>
