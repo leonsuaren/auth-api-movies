@@ -4,17 +4,23 @@ import { useNavigate } from 'react-router-dom';
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState('');
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState({});
   const navigate = useNavigate();
 
   const handleOnForgotPassword =async (e) => { 
     e.preventDefault();
     try {
       const { data } = await axios.post('http://localhost:3000/api/auth/forgot-password', { email });
+      setSuccess(data)
       setTimeout(() => {
         navigate(`/reset-password/${data.resetToken}`);
-      }, 2000);
+      }, 3000);
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.message);
+      setTimeout(() => {
+        setError('');
+      }, 3000);
     }
   }
 
@@ -63,6 +69,18 @@ export const ForgotPassword = () => {
                 </div>
               </div>
             </div>
+            {
+              success.success ?
+                <div class="alert alert-success alert-style" role="alert">
+                  {success.message}
+                </div> : ''
+            }
+            {
+              error &&
+              <div class="alert alert-danger alert-style" role="alert">
+                {error}
+              </div>
+            }
           </div>
         </div>
       </div>

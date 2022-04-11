@@ -39,7 +39,7 @@ exports.forgotpassword = async (req, res, next) => {
   const { email } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user) return res.status(404).json({ message: "No record found!" });
+    if (!user) return res.status(404).json({ message: "No record found, Please provide a correct Email!" });
     const resetToken = await user.getResetPasswordToken();
     await user.save();
     const resetUrl = `http://localhost:3001/reset-password/${resetToken}`;
@@ -54,7 +54,7 @@ exports.forgotpassword = async (req, res, next) => {
         subject: "Movies Password Reset Request",
         text: emailMessage
       });
-      res.status(200).json({ success: true, message: "Email Sent", resetToken: resetToken });
+      res.status(200).json({ success: true, message: "Email Sent, Please check your Email.", resetToken: resetToken });
     } catch (error) {
       user.resetPasswordToken = undefined;
       user.resetPasswordExpire = undefined;
