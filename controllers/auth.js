@@ -10,6 +10,7 @@ exports.register = async (req, res, next) => {
     const user = await User.create({ username, email, password });
     res.status(201).json({ success: true, message: "User created success", user: user });
   } catch (error) {
+    res.status(500).json({ success: false, message: "Email already exist", error: error });
     next(error);
   }
 }
@@ -53,12 +54,12 @@ exports.forgotpassword = async (req, res, next) => {
         subject: "Movies Password Reset Request",
         text: emailMessage
       });
-      res.status(200).json({success: true, message: "Email Sent", resetToken: resetToken});
+      res.status(200).json({ success: true, message: "Email Sent", resetToken: resetToken });
     } catch (error) {
       user.resetPasswordToken = undefined;
       user.resetPasswordExpire = undefined;
       await user.save();
-      return res.status(500).json({success: false, message: "Email could not be sent"});
+      return res.status(500).json({ success: false, message: "Email could not be sent" });
     }
   } catch (error) {
     next(error);
@@ -68,15 +69,15 @@ exports.forgotpassword = async (req, res, next) => {
 exports.resetpassword = async (req, res, next) => {
   const resetPasswordToken = crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
   try {
-    const user = await User.findOne({resetPasswordToken, resetPasswordExpire: { $gt: Date.now() }});
+    const user = await User.findOne({ resetPasswordToken, resetPasswordExpire: { $gt: Date.now() } });
     if (!user) {
-      return res.status(400).json({message: "Invalid Token"});
+      return res.status(400).json({ message: "Invalid Token" });
     }
     user.password = req.body.password;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save();
-    res.status(201).json({success: true, message: "Password Updated Success", token: user.getSignedToken()});
+    res.status(201).json({ success: true, message: "Password Updated Success", token: user.getSignedToken() });
   } catch (error) {
     next(error);
   }
