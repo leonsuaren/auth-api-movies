@@ -101,13 +101,13 @@ export const Login = () => {
             </div>
             {
               success.success ?
-                <div class="alert alert-success alert-style" role="alert">
+                <div className="alert alert-success alert-style" role="alert">
                   {success.message}
                 </div> : ''
             }
             {
               error &&
-              <div class="alert alert-danger alert-style" role="alert">
+              <div className="alert alert-danger alert-style" role="alert">
                 {error}
               </div>
             }

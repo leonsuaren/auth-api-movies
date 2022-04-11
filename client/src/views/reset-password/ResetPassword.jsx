@@ -4,19 +4,33 @@ import axios from 'axios';
 
 export const ResetPassword = () => {
   const [password, setPassword] = useState('');
-  const [confirmation, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState({});
   const params = useParams();
   const navigate = useNavigate();
 
-  const handleOnForgotPassword = async (e) => { 
+  const handleOnForgotPassword = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setPassword('');
+      setConfirmPassword('');
+      setTimeout(() => {
+        setError('');
+      }, 3000);
+      return setError('Password don\'t match');
+    }
     try {
-      const { data } = await axios.put(`http://localhost:3000/api/auth/reset-password/${params.resetToken}`, {password});
+      const { data } = await axios.put(`http://localhost:3000/api/auth/reset-password/${params.resetToken}`, { password });
       setTimeout(() => {
         navigate('/login');
       }, 2000);
+      setSuccess(data)
     } catch (error) {
-      console.log(error);
+      setError(error.response.data.message);
+      setTimeout(() => {
+        setError('');
+      }, 3000);
     }
   }
 
@@ -37,12 +51,12 @@ export const ResetPassword = () => {
                     <form onSubmit={handleOnForgotPassword}>
                       <p>Reset Password</p>
                       <div className="form-outline mb-4">
-                        <input type="password" id="form2Example22" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                        <input type="password" id="form2Example22" className="form-control" value={password} onChange={(e) => { setPassword(e.target.value) }} required/>
                         <label className="form-label" htmlFor="form2Example22">Password</label>
                       </div>
 
                       <div className="form-outline mb-4">
-                        <input type="password" className="form-control" value={confirmation} onChange={(e) => { setConfirmPassword(e.target.value) }} />
+                        <input type="password" className="form-control" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} required/>
                         <label className="form-label" htmlFor="form2Example22">Confirm Password</label>
                       </div>
                       <hr />
@@ -65,6 +79,18 @@ export const ResetPassword = () => {
                 </div>
               </div>
             </div>
+            {
+              success.success ?
+                <div className="alert alert-success alert-style" role="alert">
+                  {success.message}
+                </div> : ''
+            }
+            {
+              error &&
+              <div className="alert alert-danger alert-style" role="alert">
+                {error}
+              </div>
+            }
           </div>
         </div>
       </div>

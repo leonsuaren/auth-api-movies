@@ -68,23 +68,23 @@ export const Register = () => {
 
                         <div className="form-outline mb-4">
                           <input type="text" id="form2Example11" className="form-control"
-                            placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                            placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
                           <label className="form-label">Username</label>
                         </div>
 
                         <div className="form-outline mb-4">
                           <input type="email" className="form-control"
-                            placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                           <label className="form-label">Email</label>
                         </div>
 
                         <div className="form-outline mb-4">
-                          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
+                          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required/>
                           <label className="form-label">Password</label>
                         </div>
 
                         <div className="form-outline mb-4">
-                          <input type="password" id="form2Example22" className="form-control" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                          <input type="password" id="form2Example22" className="form-control" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
                           <label className="form-label">Confirm Password</label>
                         </div>
                         <hr />
@@ -108,13 +108,13 @@ export const Register = () => {
               </div>
               {
                 success.success ?
-                  <div class="alert alert-success alert-style" role="alert">
+                  <div className="alert alert-success alert-style" role="alert">
                     {success.message}
                   </div> : ''
               }
               {
                 error &&
-                <div class="alert alert-danger alert-style" role="alert">
+                <div className="alert alert-danger alert-style" role="alert">
                   {error}
                 </div>
               }

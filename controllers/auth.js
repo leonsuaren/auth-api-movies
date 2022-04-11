@@ -5,7 +5,6 @@ const sendEmail = require('../utils/sendEmail');
 
 exports.register = async (req, res, next) => {
   const { username, email, password } = req.body;
-
   try {
     const user = await User.create({ username, email, password });
     res.status(201).json({ success: true, message: "User created success", user: user });
@@ -71,7 +70,7 @@ exports.resetpassword = async (req, res, next) => {
   try {
     const user = await User.findOne({ resetPasswordToken, resetPasswordExpire: { $gt: Date.now() } });
     if (!user) {
-      return res.status(400).json({ message: "Invalid Token" });
+      return res.status(400).json({ message: "Please Provide an email, the time has expired!" });
     }
     user.password = req.body.password;
     user.resetPasswordToken = undefined;
