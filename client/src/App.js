@@ -8,6 +8,7 @@ import { NavBar } from './components/navbar';
 import { Home } from './views/home';
 import { LandPage } from './views/land-page';
 import { Movies } from './views/movies';
+import { SingleMovie } from './views/single-movie';
 import { Register } from './views/register';
 import { Login } from './views/login';
 import { ForgotPassword } from './views/forgot-password';
@@ -24,6 +25,7 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Home />} />
               <Route path='movies' element={<Movies />} />
+              <Route path='movies/:movieId' element={<SingleMovie />}/>
             </Route>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
