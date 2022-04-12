@@ -7,7 +7,7 @@ export const SingleMovie = React.memo(() => {
   const params = useParams();
   const apiKey = '1fb720b97cc13e580c2c35e1138f90f8';
   const apiBaseUrl = 'http://api.themoviedb.org/3';
-  const imageBaseUrl = 'http://image.tmdb.org/t/p/w500';
+  const imageBaseUrl = 'http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/';
   const [movie, setMovie] = useState();
   const [media, setMedia] = useState();
   const [loading, setLoading] = useState();
@@ -27,15 +27,22 @@ export const SingleMovie = React.memo(() => {
   }, []);
   if (!movie) return null;
   if (!media) return null;
-  console.log(media)
+  console.log(movie)
   return (
     <main>
-      <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-        <img src={`${imageBaseUrl}/${movie.backdrop_path}`} className='bg-image image-background' />
-        <div className="col-md-5 p-lg-5 mx-auto my-5">
-          <h1 className="display-4 fw-normal">{movie.original_title}</h1>
-          <p className="lead fw-normal">{movie.overview}</p>
-          <a className="btn btn-primary" href={`${movie.homepage}`} target='_blank'>Home Page</a>
+      <div className="keyboard_s custom_bg">
+        <div className="header large border first" style={{ backgroundImage: `url("${movie.backdrop_path}")` }}>
+          <img src={`${imageBaseUrl}${movie.backdrop_path}`} className="image-background" />
+          <div className="position-relative p-3 p-md-5 m-md-3">
+            <div className="col-md-5 p-lg-5 mx-auto my-5">
+              <h1 className="display-4 fw-normal">{movie.original_title}</h1>
+              <p className="lead fw-normal">{movie.overview}</p>
+              <a className="btn btn-primary" href={`${movie.homepage}`} target='_blank'>Home Page</a>
+              <div className="col-md-5 p-lg-5 mx-auto my-5">
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

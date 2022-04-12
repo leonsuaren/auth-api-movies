@@ -12,7 +12,7 @@ export const NavBar = () => {
     userContext.setUserLogin(false);
     navigate('/landing-page')
   }
-
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -33,19 +33,19 @@ export const NavBar = () => {
           <div className="d-flex">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-              {
-                !userContext.userLogin ? <Link to='login' className="nav-link active">Login</Link> : ''
-              }
+                {
+                  !userContext.userLogin ? <Link to='login' className="nav-link active">Login</Link> : ''
+                }
               </li>
               <li className="nav-item">
-              {
-                userContext.userLogin && <button className="nav-link active link" onClick={handleOnLogout}>Logout</button>
-              }
+                {
+                  userContext.userLogin && <button className="nav-link active link" onClick={handleOnLogout}>Logout</button>
+                }
               </li>
               <li className="nav-item">
-              {
-                !userContext.userLogin ? <Link to='register' className="nav-link active">Register</Link> : ''
-              }
+                {
+                  !userContext.userLogin ? <Link to='register' className="nav-link active">Register</Link> : ''
+                }
               </li>
             </ul>
           </div>
@@ -54,3 +54,9 @@ export const NavBar = () => {
     </nav>
   );
 }
+
+// <li className="nav-item">
+// {
+//   userContext.userLogin && <button className="nav-link active link">Welcome, {userLogedInName}!</button>
+// }
+// </li>

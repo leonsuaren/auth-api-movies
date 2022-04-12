@@ -27,13 +27,13 @@
  */
 
 .site-header {
-  background-color: rgba(0, 0, 0, .85);
+  background-color: rgba(0, 0, 0, 0.85);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
 .site-header a {
   color: #8e8e8e;
-  transition: color .15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 .site-header a:hover {
   color: #fff;
@@ -62,7 +62,7 @@
   bottom: 10%;
   left: 10px;
   content: "";
-  background-color: rgba(255, 255, 255, .1);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
 }
 
@@ -73,7 +73,6 @@
   left: 5%;
   background-color: #e5e5e5;
 }
-
 
 /*
  * Extra utilities
@@ -89,15 +88,45 @@
 }
 
 .image-background {
-  position: relative;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
 .media {
   width: 100%;
   height: 100%;
   border-radius: 15px;
+}
+
+.jumbo {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+div.header.large.first {
+  border-bottom: 1px solid var(--primaryColor);
+  background-position: right -200px top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+div.header {
+  background: linear-gradient(
+    to bottom right,
+    rgba(52.5, 10.5, 10.5, 1),
+    rgba(52.5, 10.5, 10.5, 0.84)
+  );
+}
+
+.custom_bg {
+  background-color: #333;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to right, rgba(52.5, 10.5, 10.5, 1) 150px, rgba(52.5, 10.5, 10.5, 0.84) 100%);
+  display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

@@ -10,13 +10,11 @@ export const Movies = () => {
   console.log(movies);
 
   return (
-    <div>
-      <div className="container">
         <div className="row">
           {
             movies.map((movie, key) => {
               return (
-                <div className="col-md-4" key={key}>
+                <div className="col-md-2" key={key}>
                   <Link to={`/movies/${movie.id}`} style={{textDecoration:'none'}}>
                     <div className="profile-card-4 text-center">
                       <img src={`${imageBaseUrl}${movie.poster_path}`} className="img" />
@@ -50,7 +48,5 @@ export const Movies = () => {
             })
           }
         </div>
-      </div>
-    </div>
   )
 }
