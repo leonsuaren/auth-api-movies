@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../context/user-context';
+import { Navbar } from 'react-bootstrap'
 
 import { Link, useNavigate } from 'react-router-dom';
 import './styles.css';
 
-export const NavBar = () => {
+export const NavBarComponent = () => {
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
   const handleOnLogout = () => {
@@ -14,7 +15,7 @@ export const NavBar = () => {
   }
   
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <Navbar className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <Link to='/' className="navbar-brand">
           <h5 >Movies-Auth</h5>
@@ -51,7 +52,7 @@ export const NavBar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </Navbar>
   );
 }
 

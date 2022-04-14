@@ -4,7 +4,7 @@ import { PrivateRoute } from './components/routing';
 
 import { UserProvider } from './context/user-context';
 
-import { NavBar } from './components/navbar';
+import { NavBarComponent } from './components/navbar';
 import { Home } from './views/home';
 import { LandPage } from './views/land-page';
 import { Movies } from './views/movies';
@@ -19,7 +19,7 @@ function App() {
     <div className=''>
       <UserProvider>
         <Router>
-          <NavBar />
+          <NavBarComponent />
           <Routes>
             <Route path='landing-page' element={<LandPage />} />
             <Route element={<PrivateRoute />}>
