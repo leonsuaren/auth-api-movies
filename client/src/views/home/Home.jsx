@@ -5,6 +5,11 @@ import './styles.css';
 export const Home = () => {
   const imageBaseUrl = 'http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/';
 
+  useEffect(() => {
+    const { data } = axios.get('http://localhost:3000/api/private/user-data')
+    console.log(data);
+  }, []);
+
   return (
     <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
     <div className="carousel-indicators">

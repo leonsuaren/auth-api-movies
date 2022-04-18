@@ -25,12 +25,12 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Home />} />
               <Route path='movies' element={<Movies />} />
-              <Route path='movies/:movieId' element={<SingleMovie />}/>
+              <Route path='movies/:movieId' element={<SingleMovie />} />
             </Route>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login />} />
-            <Route path='forgot-password' element={<ForgotPassword />}/>
-            <Route path='reset-password/:resetToken' element={<ResetPassword />}/>
+            <Route path='forgot-password' element={<ForgotPassword />} />
+            <Route path='reset-password/:resetToken' element={<ResetPassword />} />
           </Routes>
         </Router>
       </UserProvider>
