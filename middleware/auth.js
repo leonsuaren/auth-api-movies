@@ -8,7 +8,7 @@ exports.protect = async (req, res, next) => {
     token = req.headers.authorization.split(' ')[1];
   }
   if (!token) {
-    return res.status(401).json({success: false, message: "Not authorized"});
+    return res.status(401).json({success: false, message: "Not authorized!"});
   }
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET);

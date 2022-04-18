@@ -22,8 +22,8 @@ function App() {
           <NavBarComponent />
           <Routes>
             <Route path='landing-page' element={<LandPage />} />
+            <Route path='/' element={<Home />} />
             <Route element={<PrivateRoute />}>
-              <Route path='/' element={<Home />} />
               <Route path='movies' element={<Movies />} />
               <Route path='movies/:movieId' element={<SingleMovie />} />
             </Route>
