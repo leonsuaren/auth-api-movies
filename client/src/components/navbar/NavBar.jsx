@@ -45,6 +45,11 @@ export const NavBarComponent = () => {
               </li>
               <li className="nav-item">
                 {
+                  userContext.userLogin && <Link to='/control-panel' className="nav-link active link">Control Panel</Link>
+                }
+              </li>
+              <li className="nav-item">
+                {
                   !userContext.userLogin ? <Link to='register' className="nav-link active">Register</Link> : ''
                 }
               </li>

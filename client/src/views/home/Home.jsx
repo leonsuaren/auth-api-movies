@@ -4,21 +4,6 @@ import './styles.css';
 
 export const Home = () => {
   const imageBaseUrl = 'http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/';
-  const token = localStorage.getItem('authToken');
-console.log(token)
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/private/user-data',
-      {
-        headers: {
-          Authorization: 'Bearer ' + token
-        }
-      }
-    ).then((res) => {
-      console.log(res);
-    }).catch((error) => {
-      console.log(error)
-    })
-  }, []);
 
   return (
     <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">

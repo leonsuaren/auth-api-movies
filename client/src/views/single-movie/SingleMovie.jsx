@@ -27,7 +27,6 @@ export const SingleMovie = React.memo(() => {
   }, []);
   if (!movie) return null;
   if (!media) return null;
-  console.log(movie)
   return (
     <main>
       <div className="keyboard_s custom_bg">

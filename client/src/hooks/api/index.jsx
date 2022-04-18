@@ -1,1 +1,1 @@
-export { useGetMovies } from './useGetMovies';
+export { useGetMovies, useGetHomeMovies } from './useGetMovies';
