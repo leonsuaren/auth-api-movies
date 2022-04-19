@@ -11,13 +11,18 @@ export const SingleMovie = React.memo(() => {
   const [movie, setMovie] = useState();
   const [media, setMedia] = useState();
   const [loading, setLoading] = useState();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
     axios.get(`${apiBaseUrl}/movie/${params.movieId}?api_key=${apiKey}`).then((response) => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 3000);
       setMovie(response.data);
     }).catch((error) => {
-      console.log(error);
+      setError(error);
+      setLoading(false);
     });
     axios.get(`${apiBaseUrl}/movie/${params.movieId}/videos?api_key=${apiKey}`).then((response) => {
       setMedia(response.data.results);
@@ -29,19 +34,14 @@ export const SingleMovie = React.memo(() => {
   if (!media) return null;
   return (
     <main>
-      <div className="keyboard_s custom_bg">
-        <div className="header large border first" style={{ backgroundImage: `url("${movie.backdrop_path}")` }}>
-          <img src={`${imageBaseUrl}${movie.backdrop_path}`} className="image-background" />
-          <div className="position-relative p-3 p-md-5 m-md-3">
-            <div className="col-md-5 p-lg-5 mx-auto my-5">
-              <h1 className="display-4 fw-normal">{movie.original_title}</h1>
-              <p className="lead fw-normal">{movie.overview}</p>
-              <a className="btn btn-primary" href={`${movie.homepage}`} target='_blank'>Home Page</a>
-              <div className="col-md-5 p-lg-5 mx-auto my-5">
-
-              </div>
-            </div>
-          </div>
+      <img src={`${imageBaseUrl}${movie.backdrop_path}`} className="image-background" />
+      <div className="keyboard_s custom_bg"></div>
+      <div className="col-md-5 p-lg-5 mx-auto my-5 info-container">
+        <h1 className="display-4 fw-normal header-title">{movie.original_title}</h1>
+        <h4 className=" description">{movie.overview}</h4>
+        <a className="btn btn-primary" href={`${movie.homepage}`} target='_blank'>Home Page</a>
+        <div className="col-md-5 p-lg-5 mx-auto my-5">
+        
         </div>
       </div>
 
