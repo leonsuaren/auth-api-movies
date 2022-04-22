@@ -23,8 +23,8 @@ export const Home = () => {
                 <img className="bd-placeholder-img img-style" src={`${imageBaseUrl}egoyMDLqCxzjnSrWOz50uLlJWmD.jpg`} />
                 <div className="container">
                   <div className="carousel-caption text-start">
-                    <h1>Example headline.</h1>
-                    <p>Some representative placeholder content for the first slide of the carousel.</p>
+                    <h1>Cooming Soon.</h1>
+                    <p>Like never before.</p>
                     <p><a className="btn btn-lg btn-primary" href="#">Homepage</a></p>
                   </div>
                 </div>
