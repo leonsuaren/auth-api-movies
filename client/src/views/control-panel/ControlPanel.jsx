@@ -5,14 +5,35 @@ import axios from 'axios';
 export const ControlPanel = () => {
 
   const token = localStorage.getItem('authToken');
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/private/user-data',
 
-    ).then((res) => {
-      console.log(res);
-    }).catch((error) => {
-      console.log(error)
+  useEffect(() => {
+    var data = JSON.stringify({
+      "collection": "users",
+      "database": "moviesauth",
+      "dataSource": "LoginSystem",
+      "filter": {
+        "username": "leonsuarez"
+      }
+    });
+
+    var config = {
+      method: 'post',
+      url: 'https://data.mongodb-api.com/app/data-mufru/endpoint/data/beta/action/findOne',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': 'yzl2Hmnc9lO1e3pFoL8YwMy7q7KhOhZetfUI4iKoob56mfBqQkccgcMRbJIwZ08k'
+      },
+      data: data
+    };
+
+    axios(config)
+    .then(function (response) {
+        console.log(JSON.stringify(response.data));
     })
+    .catch(function (error) {
+        console.log(error);
+    });
   }, []);
 
   return (
