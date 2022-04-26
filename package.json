@@ -1,9 +1,12 @@
 {
+  "homepage": "https://leonsuaren.github.io/auth-api-movies",
   "name": "auth-api-movies",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "node server.js ",
     "server": "nodemon server.js"
   },
