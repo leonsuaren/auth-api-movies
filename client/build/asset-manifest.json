@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/leonsuaren/auth-api-movies/static/css/main.bfc64025.css",
-    "main.js": "/leonsuaren/auth-api-movies/static/js/main.7054ae72.js",
-    "index.html": "/leonsuaren/auth-api-movies/index.html",
-    "main.bfc64025.css.map": "/leonsuaren/auth-api-movies/static/css/main.bfc64025.css.map",
-    "main.7054ae72.js.map": "/leonsuaren/auth-api-movies/static/js/main.7054ae72.js.map"
+    "main.css": "/github.io/auth-api-movies/static/css/main.bfc64025.css",
+    "main.js": "/github.io/auth-api-movies/static/js/main.7054ae72.js",
+    "index.html": "/github.io/auth-api-movies/index.html",
+    "main.bfc64025.css.map": "/github.io/auth-api-movies/static/css/main.bfc64025.css.map",
+    "main.7054ae72.js.map": "/github.io/auth-api-movies/static/js/main.7054ae72.js.map"
   },
   "entrypoints": [
     "static/css/main.bfc64025.css",
