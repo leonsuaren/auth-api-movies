@@ -5,7 +5,6 @@ import './styles.css';
 
 export const SingleMovie = React.memo(() => {
   const params = useParams();
-  const apiKey = '1fb720b97cc13e580c2c35e1138f90f8';
   const apiBaseUrl = 'http://api.themoviedb.org/3';
   const imageBaseUrl = 'http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/';
   const [movie, setMovie] = useState();
@@ -15,7 +14,7 @@ export const SingleMovie = React.memo(() => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${apiBaseUrl}/movie/${params.movieId}?api_key=${apiKey}`).then((response) => {
+    axios.get(`${apiBaseUrl}/movie/${params.movieId}?api_key=${process.env.REACT_APP_API_KEY}`).then((response) => {
       setTimeout(() => {
         setLoading(false)
       }, 3000);
@@ -24,7 +23,7 @@ export const SingleMovie = React.memo(() => {
       setError(error);
       setLoading(false);
     });
-    axios.get(`${apiBaseUrl}/movie/${params.movieId}/videos?api_key=${apiKey}`).then((response) => {
+    axios.get(`${apiBaseUrl}/movie/${params.movieId}/videos?api_key=${process.env.REACT_APP_API_KEY}`).then((response) => {
       setMedia(response.data.results);
     }).catch(() => {
 
