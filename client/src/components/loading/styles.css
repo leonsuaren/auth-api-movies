@@ -1,0 +1,13 @@
+.load-title {
+  font-size: 5.3rem;
+  color: #CCCCCC;
+  display: inline;
+}
+
+.loading-animation {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0%;
+  margin: 0%;
+  color: #7786f4;
+}

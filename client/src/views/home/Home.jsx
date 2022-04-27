@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGetHomeMovies } from './../../hooks/api';
+import { Loading } from '../../components/loading';
+
 import axios from 'axios';
 import './styles.css';
 
@@ -7,11 +9,10 @@ export const Home = () => {
   const imageBaseUrl = 'http://image.tmdb.org/t/p/w1920_and_h800_multi_faces/';
   const [loading, movies, error] = useGetHomeMovies();
   if (!movies) return null;
-  console.log(movies)
   return (
-    <div>
+    <div class="d-flex justify-content-center center-content">
       {
-        loading ? <h1>loading</h1> :
+        loading ? <Loading /> :
           <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
             <div className="carousel-indicators">
               <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
