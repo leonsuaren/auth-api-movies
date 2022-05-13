@@ -29,6 +29,8 @@ exports.login = async (req, res, next) => {
       return res.status(404).json({ success: false, token: null, message: "Invalid Password", user: null });
     }
     sendToken(user, 200, res);
+    req.user = user;
+    next();
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
