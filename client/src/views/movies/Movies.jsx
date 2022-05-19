@@ -7,7 +7,6 @@ export const Movies = () => {
   const [loading, movies, error] = useGetMovies();
   const [movieId, setMovieId] = useState();
   const imageBaseUrl = 'http://image.tmdb.org/t/p/w300';
-  console.log(movies);
 
   return (
         <div className="row">
