@@ -2,11 +2,12 @@ const crypto = require('crypto');
 const sendToken = require('../utils/sendToken');
 const User = require('../models/User');
 const sendEmail = require('../utils/sendEmail');
+const sendSms = require('../utils/sendSms');
 
 exports.register = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, phoneNumber } = req.body;
   try {
-    const user = await User.create({ username, email, password });
+    const user = await User.create({ username, email, password, phoneNumber });
     res.status(201).json({ success: true, message: "User created success", user: user });
   } catch (error) {
     res.status(500).json({ success: false, message: "Email already exist", error: error });
@@ -15,7 +16,7 @@ exports.register = async (req, res, next) => {
 }
 
 exports.login = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, phoneNumber } = req.body;
   if (!email || !password) {
     return res.status(404).json({ success: false, token: null, message: "Please provide an email and password", user: null });
   }

@@ -8,7 +8,7 @@ const sendSms = (phonenumber) => {
 
   client.messages
     .create({
-      body: 'Thanks for using TODO APP!!',
+      body: 'Welcome to Movies Auth App!!',
       from: '+12512748879',
       to: `+${phonenumber}`
     })
