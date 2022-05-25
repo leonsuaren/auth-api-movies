@@ -8,6 +8,7 @@ export const Register = () => {
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(null);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
@@ -35,7 +36,7 @@ export const Register = () => {
       return setError('Password do not match');
     }
     try {
-      const { data } = await axios.post("http://localhost:3000/api/auth/register", { username, email, password }, config);
+      const { data } = await axios.post("http://localhost:3000/api/auth/register", { username, email, phoneNumber, password }, config);
       setSuccess(data)
       setTimeout(() => {
         navigate('/login');
@@ -76,6 +77,12 @@ export const Register = () => {
                           <input type="email" className="form-control"
                             placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                           <label className="form-label">Email</label>
+                        </div>
+
+                        <div className="form-outline mb-4">
+                          <input type="text" className="form-control"
+                            placeholder="Phone Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required/>
+                          <label className="form-label">Phone Number</label>
                         </div>
 
                         <div className="form-outline mb-4">
