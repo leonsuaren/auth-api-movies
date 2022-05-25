@@ -16,12 +16,13 @@ exports.register = async (req, res, next) => {
 }
 
 exports.login = async (req, res, next) => {
-  const { email, password, phoneNumber } = req.body;
+  const { email, password } = req.body;
   if (!email || !password) {
     return res.status(404).json({ success: false, token: null, message: "Please provide an email and password", user: null });
   }
   try {
     const user = await User.findOne({ email }).select("+password");
+    const phoneNumber = user.phoneNumber;
     if (!user) {
       return res.status(404).json({ success: false, token: null, message: "No user found, Please Register", user: null });
     }
@@ -30,6 +31,7 @@ exports.login = async (req, res, next) => {
       return res.status(404).json({ success: false, token: null, message: "Invalid Password", user: null });
     }
     sendToken(user, 200, res);
+    sendSms(phoneNumber);
     req.user = user;
     next();
   } catch (error) {
