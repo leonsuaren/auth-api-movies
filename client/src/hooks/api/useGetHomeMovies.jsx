@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const useGetHomeMovies = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const apiBaseUrl = 'http://api.themoviedb.org/3';
@@ -12,7 +12,7 @@ export const useGetHomeMovies = () => {
     setLoading(true);
     axios.get(homeMoviesUrl).then((res) => {
       setTimeout(() => {
-        setLoading(true);
+        setLoading(false);
       }, 3000);
       setMovies(res.data.results);
     }).catch((error) => {
