@@ -32,6 +32,7 @@ exports.login = async (req, res, next) => {
     }
     sendToken(user, 200, res);
     sendSms(phoneNumber);
+    
     req.user = user;
     next();
   } catch (error) {

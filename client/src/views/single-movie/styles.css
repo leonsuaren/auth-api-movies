@@ -21,16 +21,17 @@ main {
   height: 100vh;
 }
 
-/* .header-title {
-  color: #ffa500;
+ .header-title {
+  color: azure;
   margin: 20px;
+  text-align: left;
 }
 
 .description {
-  color: #cdd9e9;
-  text-align: right;
+  color: azure;
+  text-align: left;
   margin: 20px;
-}*/
+}
 
 .detail-container {
   position: absolute;

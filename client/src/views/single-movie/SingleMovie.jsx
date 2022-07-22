@@ -48,7 +48,7 @@ export const SingleMovie = React.memo(() => {
             />
           </div>
           <div>
-            <h1 className="display-4 fw-normal header-title">{movie.original_title}</h1>
+            <h1 className="display-4 fw-normal header-title">{movie.original_title} <span>{`( ${movie.release_date.slice(0, 4)} )`}</span></h1>
             <h4 className="description">{movie.overview}</h4>
             <a className="btn btn-primary" href={`${movie.homepage}`} target='_blank'>Home Page</a>
             <div className="col-md-5 p-lg-5 mx-auto my-5">
