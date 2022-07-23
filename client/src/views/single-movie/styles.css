@@ -23,8 +23,22 @@ main {
 
  .header-title {
   color: azure;
-  margin: 20px;
+  margin-left: 20px;
   text-align: left;
+}
+
+.release-section {
+  color: azure;
+  text-align: left;
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+
+.floating-dot {
+  font-size: 2.8rem;
+  position: relative;
+  top: -3px;
+  margin: 0 10px;
 }
 
 .description {

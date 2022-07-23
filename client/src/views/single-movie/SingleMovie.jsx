@@ -49,6 +49,20 @@ export const SingleMovie = React.memo(() => {
           </div>
           <div>
             <h1 className="display-4 fw-normal header-title">{movie.original_title} <span>{`( ${movie.release_date.slice(0, 4)} )`}</span></h1>
+            <p className="release-section">
+            {movie.release_date} 
+            <span className='floating-dot'>.</span> 
+            {`( ${movie.production_countries[0].iso_3166_1} )`}
+            <span className='floating-dot'>.</span>
+            {
+              movie.genres.map((genre, key) => {
+                return(
+                  <span key={key}>{genre.name}  </span>
+                  )
+              })
+            }
+            <span className='floating-dot'>.</span>
+            </p>
             <h4 className="description">{movie.overview}</h4>
             <a className="btn btn-primary" href={`${movie.homepage}`} target='_blank'>Home Page</a>
             <div className="col-md-5 p-lg-5 mx-auto my-5">
