@@ -25,6 +25,10 @@ export const SingleMovie = React.memo(() => {
       setError(error);
       setLoading(false);
     });
+    //https://api.gdriveplayer.us/v1/imdb/tt1285016
+    axios.get(`https://api.gdriveplayer.us/v1/imdb/tt1285016`).then((response) => {
+      console.log(response);
+    });
     axios.get(`${apiBaseUrl}/movie/${params.movieId}/videos?api_key=${process.env.REACT_APP_API_KEY}`).then((response) => {
       setMedia(response.data.results);
     }).catch(() => {
@@ -33,7 +37,7 @@ export const SingleMovie = React.memo(() => {
   }, []);
   if (!movie) return null;
   if (!media) return null;
-  console.log(movie)
+  // console.log(movie)
   return (
     <main>
       <img src={`${imageBaseUrl}${movie.backdrop_path}`} className="image-background" />
